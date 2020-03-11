@@ -1,11 +1,11 @@
 # Restaurante CrujienteCrustaceo
 
-Vamos a crear un programa que simule la página web de un restaurante. A través de nuestro programa el usuario podrá ver la carta, hacer reservas pedidos online personalizables, etc. 
-Descripción breve del proyecto a realizar (2-3 frases).
+Vamos a crear un programa que simule la página web de un restaurante. A través de nuestro programa el usuario podrá ver la carta, hacer reservas, pedidos online personalizables, etc. 
 
 ## Integrantes del equipo
 
-Nombres, apellidos, y usuario GitHub de los integrantes del equipo.
+Samuel Cerro Hernández 54540
+Marina Polo Vera 54809
 
 ## Objetivos del trabajo
 
