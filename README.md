@@ -4,8 +4,7 @@ Vamos a crear un programa que simule la página web de un restaurante. A través
 
 ## Integrantes del equipo
 
-Samuel Cerro Hernández 54540
-Marina Polo Vera 54809
+Samuel Cerro Hernández 54540 y Marina Polo Vera 54809
 
 ## Objetivos del trabajo
 
