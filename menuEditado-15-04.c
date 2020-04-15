@@ -134,7 +134,7 @@ int main(){
 				}
 				
 				i=0;	
-				//leer las palabras del fichero y las va guardando, según el valor de i.
+				//leer las palabras del fichero y las va guardando, segÃºn el valor de i.
 				while(fscanf(pfichero,"%s", empleados[i].registros)!=EOF){
 					i++;
 				}
@@ -408,7 +408,7 @@ void 	portalEmpleados(){
 /*	pfichero = fopen("empleados.txt", "r");
 	
 i=0;	
-	//leer las palabras del fichero y las va guardando, según el valor de i.
+	//leer las palabras del fichero y las va guardando, segÃºn el valor de i.
 	while(fscanf(pfichero,"%s", empleados[i].registros)!=EOF){
 		i++;
 	}
