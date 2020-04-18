@@ -1,8 +1,10 @@
 
 #include<stdio.h>
 #include<string.h>
-struct trabajo{
-char	registros[100];
+
+
+struct trabajo {
+char registros[100];
 int password;
 };
 
@@ -18,17 +20,24 @@ struct fechas{
     int annyo;
 };
 
+struct inventario{
+	char nombre[50];
+	int cantidad;
+};
+
 //void titulo();
 void menuPrincipal();
 void menuCarta();
-void hacerReserva();
+void hacuerReserva();
 void hacerPedido();
 void portalEmpleados();
 
-int main(){
+int main() {
+	
 	FILE * pfichero;
 	int opcion1, opcion2, opcion3, opcion4;
 	struct fechas vectorReservas[100];
+	struct inventario vectorProducto[100];
 	int contadorCarta=0, contador=0, i=0;
 	char seleccion;
 	int seleccion1;
@@ -118,9 +127,6 @@ int main(){
 				}
 	
 				fclose(pfichero);
-				
-				
-				
 				break;
  
 			case 3:
@@ -174,13 +180,13 @@ int main(){
 				
 				do{
 				system("cls");
-				menuEmpleados();
-					scanf("%d",&opcion3);
+				portalEmpleados();
+				scanf("%d",&opcion3);
 				
 				switch (opcion3) {
 		
 				case 1: 
-					pfichero=fopen("carta.txt", "r");
+					pfichero=fopen("inventario.txt", "r");
 	   				 if (pfichero == NULL) {
 	   					 printf("No se encuentra el fichero\n");
 	   					 return 0;
@@ -195,6 +201,54 @@ int main(){
 	   	 		
 				break;
 				case 2: 
+				pfichero=fopen("inventario.txt", "r");
+			
+			if(pfichero==NULL){
+				printf("No se ha encontrado el fichero\n");
+				return 0;
+			}
+			
+			printf("Estos son los articulos disponibles en este momento\n");
+			while(fscanf(pfichero, "%s %d", vectorProducto[contador].nombre, &vectorProducto[contador].cantidad) != EOF) {
+				printf("%s %d\n", vectorProducto[contador].nombre, vectorProducto[contador].cantidad);
+				contador++;
+	    	}
+	    	fclose(pfichero);
+	    	
+			do{
+				printf("\nINTRODUZCA LOS DATOS DEL PRODUCTO QUE DESEA INCLUIR\n");
+				printf("Nombre del producto:\t");
+				scanf("%s", vectorProducto[contador].nombre);
+				printf("Cantidad del producto:\t");
+				scanf("%d", &vectorProducto[contador].cantidad);
+				contador++;
+				
+				printf("Desea incluir algun otro articulo? [S/N]");
+				fflush(stdin);
+				
+				scanf("%c", &opcion1);
+				
+				if(opcion1!='s'||opcion1!='S'){
+				printf("El fichero se ha modificado con exito\n");
+				portalEmpleados();
+				}
+					
+			}while(opcion1=='s'||opcion1=='S');
+
+				pfichero=fopen("inventario.txt", "w");
+				
+				if (pfichero == NULL) {
+					printf("No se ha podido modificar el fichero\n");
+					return 0;
+				}
+	
+				for (i=0; i <contador; i++) {
+					fprintf(pfichero, "%s %d\n", vectorProducto[i].nombre, vectorProducto[i].cantidad);
+				}
+				
+				fclose(pfichero);
+				break;
+				
 				break;
 				case 4: 
 					pfichero=fopen("empleados.txt", "r");
@@ -203,8 +257,7 @@ int main(){
 	   					 return 0;
 					}
 					while (!feof(pfichero)) {
-	  	      			printf("%c",getc(pfichero));
-	  	      			
+	  	      			printf("%c",getc(pfichero));	
 	   				}
 	   				printf("\n\n");
 				    system("pause");
@@ -212,7 +265,7 @@ int main(){
 					break;
  
 				case 5:
-				
+				printf("Adios :(\n");
 				return 0;
 				break;
 				}
@@ -236,14 +289,6 @@ int main(){
 
 
 
-
-
-
-
-
-
-
-
 void menuPrincipal(){
 	int opcion;
 
@@ -255,12 +300,8 @@ void menuPrincipal(){
 		printf("\t\t\t\t\t3- Hacer un pedido\n");
 		printf("\t\t\t\t\t4- Portal de empleados\n");
 		printf("\t\t\t\t\t5- Salir\n");
-		printf("\n\t\t\t\t\tIngrese su opcion: [ ]\b\b");
-
-		
+		printf("\n\t\t\t\t\tIngrese su opcion: [ ]\b\b");		
 }
-
-
 
 
 void menuCarta(){
@@ -286,24 +327,19 @@ void menuCarta(){
 		scanf("%d", &seleccion1);
 	if(seleccion1=1){
 		return menuPrincipal();
-	}
-	//Queria hacer un else que me sacase del programa con un break pero no me ha dejado
+ }
+	
 }
 
 
-
-void menuEmpleados(){
+void portalEmpleados(){
 	printf("\t\t\t\t1-Inventario\n");
-				printf("\t\t\t\t\tI2-Aniadir articulos\n");
-				printf("\t\t\t\t\tI3-Restar articulos\n");
-				printf("\t\t\t\t\tI4-Registro de empleados\n");
-				printf("\t\t\t\t\tI5-Salir");
-				printf("\t\t\t\t\tI\nIngrese su opcion: [ ]\b\b");
+	printf("\t\t\t\t\tI2-Incluir articulos\n");
+	printf("\t\t\t\t\tI3-Modificar articulos\n");
+	printf("\t\t\t\t\tI4-Registro de empleados\n");
+	printf("\t\t\t\t\tI5-Salir");
+	printf("\t\t\t\t\tI\nIngrese su opcion: [ ]\b\b");
 }
-
-
-
-
 
 
 void hacerReserva(){
@@ -320,18 +356,15 @@ char seleccion;
 	if (pfichero == NULL) {
 		printf("No se encuentra el fichero\n");
 	}
-	
 
 	printf("Fechas ya reservadas:\n ");
 	while (fscanf(pfichero, "%d %d %d", &vectorReservas[contador].dia, &vectorReservas[contador].mes, &vectorReservas[contador].annyo) != EOF) {
 		printf("%d/%d/%d\n", vectorReservas[contador].dia, vectorReservas[contador].mes,  vectorReservas[contador].annyo);
 		contador++;
 	}
-	
 
 	fclose(pfichero);
 	
-
 	do {
 		printf("\n1 - Introduzca la fecha de su reserva:\n");
 		printf("2 - Salir\n");
@@ -373,20 +406,7 @@ char seleccion;
 	}
 	
 	fclose(pfichero);
-	
-	//Podriamos poner tambien que solo se puedan realizar un minimo de reservas con un contador y que se pueda consultar que
-	// otras reservas hay leyendo el fichero
-	// Aqui no se si se me sale del programa porque la memoria se ha rallado o si funciona bien
-	// Ademas no me sale que los datos se hayan guardado en el fichero despues de introducirlos, sera cosa de los fprintf?
-	// He pensado que para este menu estaria bien hacer un do-while que te pregunte todo el tiempo si quieres hacer una reserva 
-	// y que vuelva a mostrar el menu si pones que si y se vaya al menu principal si dices que no
-	// pero no se si me sale porque ya se me esta rallando el ordenador y se me sale del programa siempre
-}//*
-
-
-
-
-
+}
 
 
 void hacerPedido(){
@@ -510,4 +530,3 @@ else if(opcion=='n'||opcion=='N'){
 	//Aqui pretendia que si no habias seleccionado algo no saliese nada porque gets no habia pillado nada
 	// pero salen caracteres raros
 	}
-
