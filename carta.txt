@@ -1,0 +1,9 @@
+PalitosDeCangrejo 10
+CalamaresALaRomana 5
+NuggetsPescanova 9.90
+BurgerCangreburger 5
+BurgerCangreburgerDoble 7.50
+BurgerCangreburgerconpatatas 15
+HeladoDeAnchoa 4
+BrownieDeEspetos 2 
+ZumoDeAlmeja 6
