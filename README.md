@@ -2,11 +2,11 @@
 
 Vamos a crear un programa que simule la página web de un restaurante. 
 El programa presenta cuatro opciones principales y la de salir. Las opciones son las siguientes: 
--  Portal de Empleados 
-- Hacer una Reserva 
-- Hacer un pedido 
-- Carta 
-- Salir
+- 1. Portal de Empleados 
+- 2. Hacer una Reserva 
+- 3. Hacer un pedido 
+- 4. Carta 
+- 5. Salir
 
   
 
@@ -15,8 +15,9 @@ El programa presenta cuatro opciones principales y la de salir. Las opciones son
 Samuel Cerro Hernández 54540 y Marina Polo Vera 54809
 
 ## Objetivos del trabajo
-1- Carta del restaurante: simplemente enseña por pantalla un fichero que contiene las comidas de las que dispone el restaurante asi como sus precios. Es meramente informativa. 
-2- Hacer una reserva: en esta opción el cliente puede reservar una fecha para comer en el restaurante, así como consultar el numero de reservas disponibles en ese momento. 
-3- Hacer un pedido: siguiendo la carta, el cliente puede realizar un pedido que consiste en poder elegir un entrante, un menu y un postre, o solo un entrante, o solo un menu, etc. 
-4- Portal de empleados: esta categoria sirve para que los empleados del restaurante, a través de una contraseña común, puedan consultar el inventario, los pedidos y las reservas de los clientes.
+Estas son las finalidades de cada uno de los apartados de este trabajo:
 
+- 1. Portal de Empleados: permite llevar la cuenta de los empleados que trabajan en el restaurante y también añadir nuevos empleados. Los empleados del restaurante pueden modificar la carta que ven los comensales.
+- 2. Hacer una Reserva: en esta opción los clientes del restaurante pueden reservar una fecha para comer, así como ver qué fechas no están ya disponibles.
+- 3. Hacer un Pedido: esta sección permite a los clientes elegir qué elementos de la carta desean pedir entre los entrantes, menus y postres disponibles.
+- 4. Carta: este apartado es meramente informativo para que los clientes vean las comidas de las que dispone el restaurante.
