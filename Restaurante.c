@@ -334,6 +334,7 @@ int main() {
 					else{
 						printf("Hasta pronto\n");
 						return 0;
+						break;
 					}
 				}else{
 					printf("De acuerdo. Sigamos\n");
