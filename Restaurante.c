@@ -1,4 +1,4 @@
-//ULTIMA EDICION 21-04-2020
+//ULTIMA EDICION 18-05-2020
 
 
 #include <stdio.h>
@@ -37,8 +37,9 @@ int main() {
 	int opcionReserva;
 	//pedido
 	char seleccionPedido;
-	char menuPedido[50], postre[50], entrante[50];
+	char platoPedido[50];
 	int opcionPedido;
+	float coste=0;
 	//carta
 	int opcionCarta;
 	//agregar producto
@@ -288,88 +289,44 @@ int main() {
 				fclose(fichero);
 				break;
 		case 3:
+			system("cls");
 				fichero=fopen("carta.txt", "r");
 				
 				if(fichero==NULL){
 					printf("No se ha podido encontrar el fichero\n");
 					return 0;
 				}
-				
-				printf("Desea mirar la carta mientras pide? [S/N]");
-				fflush(stdin);
-				scanf("%c", &seleccionPedido);
-				
-				if(seleccionPedido=='s'||seleccionPedido=='S'){
-					while (!feof(fichero)) {
-	        		printf("%c",getc(fichero));
-	    			}
-				fclose(fichero);
-				
-				printf("\nElija un entrante:\t");
-				fflush(stdin);
-				gets(entrante);
-				fflush(stdin);
-				printf("Elija un menu:\t");
-				fflush(stdin);
-				gets(menuPedido);
-				printf("Por ultimo, escoja un postre (invita la casa):\t");
-				fflush(stdin);
-				gets(postre);
-				
-				printf("Operacion terminada\n");
-				printf("Su pedido se compone de:\n\n");
-				printf("\tUn entrante --> %s\n", entrante);
-				printf("\tUn menu --> %s\n", menuPedido);
-				printf("\tY un postre --> %s\n\n", postre);
-				
-				printf("Si desea volver al menu principal pulse 1\n");
-				printf("Para salir, pulse cualquier otra tecla\n");
-				fflush(stdin);
-				scanf("%d", &opcionPedido);
-				
-					if(opcionPedido==1){
-						system("cls");
-						menuPrincipal();
+					fichero=fopen("carta.txt", "r");
+		
+		printf("\t\t\tEstos son los platos disponibles en este momento:\n\n");
+					while (fscanf(fichero, "%s %f", vectorProducto[contadorCarta].nombre, &vectorProducto[contadorCarta].precio) != EOF) {
+					printf("\t\t\t\t\t%s ---> %.2f$\n", vectorProducto[contadorCarta].nombre, vectorProducto[contadorCarta].precio);
+					contadorCarta++;
 					}
-					else{
-						printf("Hasta pronto\n");
-						return 0;
-						break;
-					}
-				}else{
-					printf("De acuerdo. Sigamos\n");
-					printf("Elija un entrante:\t");
-					fflush(stdin);
-					gets(entrante);
-					printf("Elija un menu:\t");
-					fflush(stdin);
-					gets(menuPedido);
-					printf("Por ultimo, escoja un postre (invita la casa):\t");
-					fflush(stdin);
-					gets(postre);
-			
-				
-					printf("Operacion terminada\n");
-					printf("Su pedido se compone de:\n\n");
-					printf("\tUn entrante --> %s\n", entrante);
-					printf("\tUn menu --> %s\n", menuPedido);
-					printf("\tY un postre --> %s\n\n", postre);
-				
-					printf("Si desea volver al menu principal pulse 1\n");
-					printf("Para salir, pulse cualquier otra tecla\n");
-					fflush(stdin);
-					scanf("%d", &opcionPedido);
-				
-					if(opcionPedido==1){
-						system("cls");
-						menuPrincipal();
-					}
-					else{
-						printf("Hasta pronto\n");
-						return 0;
-					}
-				}
-					break;
+	    			fclose(fichero);
+	   
+	   do{	
+	   	fflush(stdin);
+	    printf("\nIntroduzca el nombre del plato que desea:\n");
+	    gets(platoPedido);
+	
+	    for(i=0;i<contadorCarta;i++){
+	    	if(strcmp(vectorProducto[i].nombre, platoPedido)==0){
+	    		printf("\nDe acuerdo, se adicionan %.2f al precio final\n", vectorProducto[i].precio);
+	    		coste+=vectorProducto[i].precio;
+	    		
+			}
+		}
+		
+		printf("Desea continuar pidiendo?\n");
+		printf("1-Continuar\n");
+		printf("2-Salir\n");
+		scanf("%d", &opcionPedido);
+	}while(opcionPedido!=2);
+	printf("Pedido realizado con exito, el precio final seran : %.2f$\n\n\n", coste);
+	printf("Muchas gracias :)\n\n");
+	system("pause");
+			break;
 		case 4:
 			fichero=fopen("carta.txt", "r");
 			
@@ -433,8 +390,10 @@ break;
 //       FUNCIONES	:
 
 
-void menuPrincipal(){
-		 	printf("\n\t\t\t\t\t\tMENU PRINCIPAL\n\n\n");
+void menuPrincipal(){ 
+	printf("\n\t\t\t      BIENVENIDO AL MENU PRINCIPAL DEL CRUJIENTE CRUSTACEO!\n\n");
+		 	printf("\n\t\t\t\t\t\tMENU PRINCIPAL\n");
+			printf("\t\t\t\t\t\t--------------  \n");
 		printf("\t\t\t\t\t1- Portal de empleados\n");
 		printf("\t\t\t\t\t2- Hacer una reserva\n");
 		printf("\t\t\t\t\t3- Hacer un pedido\n");
@@ -444,11 +403,11 @@ void menuPrincipal(){
 }
 void menuUsuario(){
 
-
+	printf("\n\n\t\t\t\t\t\tMENU EMPLEADOS\n\n");
 	printf("\t\t\t\t\t1-Registro de empleados\n");
 	printf("\t\t\t\t\t2-Agregar producto a la carta\n");
 	printf("\t\t\t\t\t3-Agregar trabajador\n");
-	printf("\t\t\t\t\t4-Salir");
+	printf("\t\t\t\t\t4-Salir\n");
 	printf("\t\t\t\t\t\nIngrese su opcion: [ ]\b\b");
 	
 }
