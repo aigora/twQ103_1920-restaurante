@@ -2,11 +2,11 @@
 
 Vamos a crear un programa que simule la página web de un restaurante. 
 El programa presenta cuatro opciones principales y la de salir. Las opciones son las siguientes: 
-- 1. Portal de Empleados 
-- 2. Hacer una Reserva 
-- 3. Hacer un pedido 
-- 4. Carta 
-- 5. Salir
+- Portal de Empleados 
+- Hacer una Reserva 
+- Hacer un pedido 
+- Carta 
+- Salir
 
   
 
