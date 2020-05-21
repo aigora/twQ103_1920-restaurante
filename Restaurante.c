@@ -49,7 +49,7 @@ int main() {
 	
 	do{
 	system("cls");
-	system("color F6");
+	system("color F1");
 	menuPrincipal();
 	scanf("%i",&menu);
 	fflush(stdin);
@@ -250,6 +250,7 @@ int main() {
 			}while(submenu!='4');
 			
 		case 2:
+			system("cls")
 			fichero=fopen("reservas.txt", "r");
 			contadorReserva=0;
 			
