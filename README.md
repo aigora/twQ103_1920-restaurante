@@ -1,4 +1,4 @@
-# Restaurante CrujienteCrustaceo
+# Restaurante Crujiente Cangrejo
 
 Vamos a crear un programa que simule la página web de un restaurante. 
 El programa presenta cuatro opciones principales y la de salir. Las opciones son las siguientes: 
