@@ -63,7 +63,6 @@ int main() {
 				printf("\n\n\t\t\t\t\tNo se ha podido abrir el fichero\n");
 				return -1; 
 			}
-			
 			i=0;
 			while (fscanf(fichero, "%s", vector[i].empleado)!=EOF) {
 				i++;
@@ -139,6 +138,7 @@ int main() {
 					break;
 	
 				case 2:
+					system("cls");
 					fichero=fopen("carta.txt", "r");
 			
 					if(fichero==NULL){
@@ -153,7 +153,7 @@ int main() {
 						contadorCarta++;
 					}
 					
-	    				fclose(fichero);
+	    			fclose(fichero);
 					
 					printf("\nIntroduzca el producto que desee y el precio para dicho producto\n");
 					fflush(stdin);
@@ -186,7 +186,7 @@ int main() {
 					if (fichero == NULL) {
 						printf("\n\n\t\t\t\t\tNo se ha podido abrir el fichero\n");
 						return -1; 
-						}
+					}
 					
 					i=0;
 					while (fscanf(fichero, "%s",vector[i].empleado)!=EOF) {
@@ -333,6 +333,7 @@ int main() {
 				printf("\t2-Salir\n");
 				printf("\tIntroduzca su opcion:\t");
 				scanf("%d", &opcionPedido);
+				
 			}while(opcionPedido!=2);
 			
 			printf("Pedido realizado con exito, el precio final seran : %.2f$\n\n\n", coste);
@@ -341,6 +342,7 @@ int main() {
 			break;
 			
 		case 4:
+			system("cls");
 			fichero=fopen("carta.txt", "r");
 			
 			if(fichero==NULL){
@@ -398,14 +400,15 @@ int main() {
 			break;
 		
 		default: printf("\t\t\t\t\tOpcion no valida\n");
-			system("pause");
-			system("cls");
-			break;
+		system("pause");
+		system("cls");
+		break;
 		}
 	}while(menu!='5');
 }
 
-//FUNCIONES:
+//FUNCIONES	:
+
 
 void menuPrincipal(){ 
 	printf("\n\t\t\t      BIENVENIDO AL MENU PRINCIPAL DEL CRUJIENTE CANGREJO!\n\n");
