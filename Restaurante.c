@@ -250,7 +250,7 @@ int main() {
 			}while(submenu!='4');
 			
 		case 2:
-			system("cls")
+			system("cls");
 			fichero=fopen("reservas.txt", "r");
 			contadorReserva=0;
 			
