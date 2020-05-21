@@ -4,19 +4,24 @@
 
 void menuPrincipal();
 void menuUsuario();
+int carta();
+
 struct Empleados{
 	char empleado[50];
 	char nombre[50];
 };
+
 struct inventario{
 	char nombre[50];
 	float precio;
 };
+
 struct fechas{
     int dia;
     int mes;
     int annyo;
 };
+
 int main() {
 	FILE *fichero;
 	struct Empleados vector[100];
@@ -41,7 +46,7 @@ int main() {
 	float coste=0;
 	
 	//carta
-	int opcionCarta;
+	int retorno;
 	
 	//agregar producto
 	struct inventario vectorProducto[100];
@@ -155,7 +160,7 @@ int main() {
 					
 	    			fclose(fichero);
 					
-					printf("\nIntroduzca el producto que desee y el precio para dicho producto\n");
+					printf("\n\tIntroduzca el producto que desee y el precio para dicho producto\n");
 					fflush(stdin);
 					printf("\t-> Producto:\t");
 					scanf("%s", vectorProducto[contadorCarta].nombre);
@@ -318,59 +323,32 @@ int main() {
 	   
 	   		do{	
 	   			fflush(stdin);
-	    		printf("\nIntroduzca el nombre del plato que desea:\t");
-	    		gets(platoPedido);
+	    			printf("\n\tIntroduzca el nombre del plato que desea: ");
+	    			gets(platoPedido);
 	
-	    		for(i=0;i<contadorCarta;i++){
-	    			if(strcmp(vectorProducto[i].nombre, platoPedido)==0){
-	    				printf("\nDe acuerdo, se adicionan %.2f al precio final\n\n", vectorProducto[i].precio);
-	    				coste+=vectorProducto[i].precio;	
+	    			for(i=0;i<contadorCarta;i++){
+	    				if(strcmp(vectorProducto[i].nombre, platoPedido)==0){
+	    					printf("\n\tDe acuerdo, se adicionan %.2f al precio final\n\n", vectorProducto[i].precio);
+	    					coste+=vectorProducto[i].precio;	
 					}
 				}
 		
-				printf("Desea continuar pidiendo?\n\n");
-				printf("\t1-Continuar\n");
-				printf("\t2-Salir\n");
+				printf("\tDesea continuar pidiendo?\n\n");
+				printf("\t\t1-Continuar\n");
+				printf("\t\t2-Salir\n");
 				printf("\tIntroduzca su opcion:\t");
 				scanf("%d", &opcionPedido);
 				
 			}while(opcionPedido!=2);
 			
-			printf("Pedido realizado con exito, el precio final seran : %.2f$\n\n\n", coste);
-			printf("Muchas gracias :)\n\n");
+			printf("\tPedido realizado con exito, el precio final seran : %.2f$\n\n\n", coste);
+			printf("\tMuchas gracias :)\n\n");
 			system("pause");
 			break;
 			
 		case 4:
-			system("cls");
-			fichero=fopen("carta.txt", "r");
-			
-			if(fichero==NULL){
-				printf("\n\n\t\t\t\t\tNo se ha podido encontrar el fichero\n");
-				return -1;
-			}
-			
-			system("cls");
-			printf("\n\n\t\t\t\t\tNuestra carta incluye:\n\n");
-			
-			while (fscanf(fichero, "%s %f", vectorProducto[contador].nombre, &vectorProducto[contador].precio) != EOF) {
-				printf("\t\t\t-> %s........................ %.2f$\n", vectorProducto[contador].nombre, vectorProducto[contador].precio);
-				contador++;
-			}
-	    	
-	    		fclose(fichero); 
-	    	
-	    		printf("\n\n\t\t\t\tPara volver al menu principal pulse 1\n");
-	    		printf("\t\t\t\tPara salir, pulse cualquier otra tecla: ");
-	    		scanf("%d", &opcionCarta);
-	    	
-	    		if(opcionCarta==1){
-	    			system("cls");
-	    			menuPrincipal();
-			}
-			else{
-				system("cls");
-				printf("Hasta pronto!\n");
+			retorno=carta();
+			if(retorno==0){
 				return 0;
 			}
 			break;
@@ -409,9 +387,8 @@ int main() {
 
 //FUNCIONES	:
 
-
 void menuPrincipal(){ 
-	printf("\n\t\t\t      BIENVENIDO AL MENU PRINCIPAL DEL CRUJIENTE CANGREJO!\n\n");
+	printf("\n\t\t\tBIENVENIDO AL MENU PRINCIPAL DEL CRUJIENTE CANGREJO!\n\n");
 	printf("\n\t\t\t\t\t\tMENU PRINCIPAL\n");
 	printf("\t\t\t\t\t\t--------------  \n");
 	printf("\t\t\t\t\t1- Portal de empleados\n");
@@ -429,4 +406,42 @@ void menuUsuario(){
 	printf("\t\t\t\t\t3-Agregar trabajador\n");
 	printf("\t\t\t\t\t4-Salir\n");
 	printf("\t\t\t\t\tIngrese su opcion: [ ]\b\b");
+}
+
+int carta(){
+	int opcionCarta;
+	struct inventario vectorProducto[100];
+	FILE*fichero;
+	int contador=0;
+	system("cls");
+	fichero=fopen("carta.txt", "r");
+			
+	if(fichero==NULL){
+		printf("\n\n\t\t\t\t\tNo se ha podido encontrar el fichero\n");
+	}
+			
+	system("cls");
+	printf("\n\n\t\t\t\t\tNuestra carta incluye:\n\n");
+			
+	while (fscanf(fichero, "%s %f", vectorProducto[contador].nombre, &vectorProducto[contador].precio) != EOF) {
+		printf("\t\t\t-> %s........................ %.2f$\n", vectorProducto[contador].nombre, vectorProducto[contador].precio);
+		contador++;
+	}
+	    	
+	fclose(fichero); 
+	    	
+	printf("\n\n\t\t\t\tPara volver al menu principal pulse 1\n");
+	printf("\t\t\t\tPara salir, pulse cualquier otra tecla: ");
+	scanf("%d", &opcionCarta);
+	    	
+	if(opcionCarta==1){
+	    system("cls");
+	    menuPrincipal();
+	}
+	else{
+		opcionCarta=0;
+		system("cls");
+		printf("Hasta pronto!\n");
+	}
+	return opcionCarta;
 }
